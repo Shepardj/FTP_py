@@ -4,11 +4,24 @@ from ftp_Library import *
 call functions in the library
 '''
 
+api = ftpAPI()
+
+
+
 print "user name is Anonymous"
 print "no password just hit enter"
 
 
-ftp = login('ftp.swfwmd.state.fl.us')
+api.login('ftp.swfwmd.state.fl.us')
 
-print ftp.dir()
+print api.pwd()
+print
+print api.ls()
+print
+print api.ls_attributes()
 
+
+print "\nCurrent directory in local file system"
+localFiles = LocalFileSystem()
+
+print localFiles.pwd()
