@@ -12,6 +12,6 @@ Jonathan Shepardson
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This file can be our overview / dependencies file. 
+Python Version: 2.7.6
 
-Feel free to add anything to it.
+
