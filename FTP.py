@@ -50,6 +50,7 @@ def exit():
 	print("\nExiting program.")
 	return
 
+#The menu switch, add a -> number : function_name  to it if you'd like a button
 def menu(input):
 	switch = {
 		1 : switch_1,
@@ -59,7 +60,7 @@ def menu(input):
 		99 : exit
 	}
 
-	func = switch.get(input, lambda: -1) #default case = error of -1
+	func = switch.get(input, lambda: "Bad number") #default case = error of -1
 
 	return func()
 
