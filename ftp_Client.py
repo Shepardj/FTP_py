@@ -6,6 +6,7 @@ import getpass
 import os
 
 api = ftpAPI()
+local =LocalFileSystem()
 
 #Variables:
 flag = 1
@@ -40,6 +41,15 @@ def print_menu():
     print("9 = rm")
     print("10 = mkdir")
     print("11 = chmod")
+    print("12 = local_pwd")
+    print("13 = local_ls")
+    print("14 = local_ls_attributes")
+    print("15 = local_cd")
+    print("16 = local_cp")
+    print("17 = local_mv")
+    print("18 = local_rm")
+    print("19 = local_mkdir")
+    print("20 = local_chmod")
     print("99 = Exit! ")
     return
 
@@ -98,6 +108,50 @@ def chmod():
     print api.chmod()
     return
 
+def local_pwd():
+    print("\nlocal_pwd")
+    print local.pwd()
+    return
+
+def local_ls():
+    print("\nlocal_ls")
+    print local.ls()
+    return
+
+def local_ls_attributes():
+    print("\nlocal_ls_attributes")
+    print local.ls_attributes()
+    return
+
+def local_cd():
+    print("\nlocal_cd")
+    print local.cd()
+    return
+
+def local_cp():
+    print("\nlocal_cp")
+    print local.cp()
+    return
+
+def local_mv():
+    print("\nlocal_mv")
+    print local.mv()
+    return
+
+def local_rm():
+    print("\nlocal_rm")
+    print local.rm()
+    return
+
+def local_mkdir():
+    print("\nlocal_mkdir")
+    print local.mkdir()
+    return
+
+def local_chmod():
+    print("\nlocal_chmod")
+    print local.chmod()
+    return
 
 
 def exit():
@@ -118,7 +172,16 @@ def menu(input):
         9 : rm,
         10: mkdir,
         11: chmod,
-        99 : exit
+        12: local_pwd,
+        13: local_ls,
+        14: local_ls_attributes,
+        15: local_cd,
+        16: local_cp,
+        17: local_mv,
+        18: local_rm,
+        19: local_mkdir,
+        20: local_chmod,
+        99: exit
     }
 
     func = switch.get(input, lambda: "Bad number") #default case = error of -1
