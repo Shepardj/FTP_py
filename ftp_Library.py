@@ -11,6 +11,9 @@ import os
 
 
 class ftpAPI:
+    '''
+    Useful Documentation: https://docs.python.org/2/library/ftplib.html
+    '''
 
 
 
@@ -80,6 +83,9 @@ class ftpAPI:
 
 
 class LocalFileSystem:
+    '''
+    Useful Documentation: https://docs.python.org/2/library/ftplib.html
+    '''
 
     def __init__(self):
         self.currentDirectory = os.getcwd()
