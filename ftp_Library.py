@@ -5,11 +5,9 @@ Linux style file commands for the server and local file system
 
 
 from ftplib import FTP
+import sys
 import getpass
 import os
-
-
-
 
 
 class ftpAPI:
@@ -24,13 +22,13 @@ class ftpAPI:
         :param : string ftp hostname
         :return: ftp connection object
         '''
-        userName = raw_input("User Name: ")
-        pw = getpass.getpass("Password(anything will work...): ")
+        # userName = raw_input("User Name: ")
+        # pw = getpass.getpass("Password(anything will work...): ")
 
-        self.connection = FTP(ftpHost,user=userName, passwd=pw)
+        self.connection = FTP(ftpHost,user="Anonymous", passwd="")
 
-        del userName
-        del pw
+        # del userName
+        # del pw
 
     def pwd(self):
         return self.connection.pwd()
@@ -46,7 +44,7 @@ class ftpAPI:
         print ("Not implemented yet")
     def putFile(self, fileToPut, serverDestinationPath):
         print ("Not implemented yet")
-    def cd(self, fileName):
+    def cd(self, folderName):
         print ("Not implemented yet")
     def cp(self, fileName):
         print ("Not implemented yet")

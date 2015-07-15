@@ -1,17 +1,11 @@
 #Main python file
 
-
-#~~~~~~~~~~~~ Pre Program Stuff ~~~~~~~~~~~~~~~#
-
 from ftplib import FTP
 from ftp_Library import *
 import getpass
 import os
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-
-#~~~~~~~~~~~~~~~~ Variables/Definitions ~~~~~~~~~~~~~~~~~~~~~~~#
+api = ftpAPI()
 
 #Variables:
 flag = 1
@@ -19,19 +13,24 @@ flag = 1
 #Welcome to the program prompt
 def welcome(): 
 	print("\nWelcome to the program Steve Fish Truck\n")  #someone make this better :)
+	print "user name is Anonymous"
+	print "no password just hit enter"
+
+	api.login('ftp.swfwmd.state.fl.us')
 	return
 
 def print_menu():
 	print("\n----> What can I do for you Steve?? <----\n")
-	print("1 = Some Stuff")
-	print("2 = More Stuff")
-	print("3 = Steve's Stuff!")
+	print("1 = pwd")
+	print("2 = ls")
+	print("3 = ls_attributes")
 	print("4 = Button #4")
 	print("99 = Exit! ")
 	return
 
 def switch_1():
-	print("\nI DID SOME STUFF!!!!")
+	print("\npwd")
+	print api.pwd()
 	return
 
 def switch_2():
