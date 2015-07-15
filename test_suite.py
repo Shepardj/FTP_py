@@ -9,7 +9,7 @@ class TestFTP(unittest.TestCase):
 
     def setUp(self):
         self.ftp = ftpAPI()
-        self.ftp.test_login('ftp.swfwmd.state.fl.us')
+        self.ftp.login_for_testing('ftp.swfwmd.state.fl.us')
 
     def test_pwd(self):
         self.assertEqual(self.ftp.pwd(), '/')
