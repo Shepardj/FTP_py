@@ -19,31 +19,79 @@ def welcome():
 	api.login('ftp.swfwmd.state.fl.us')
 	return
 
+# This is the worst way we could do this....
 def print_menu():
 	print("\n----> What can I do for you Steve?? <----\n")
 	print("1 = pwd")
 	print("2 = ls")
 	print("3 = ls_attributes")
-	print("4 = Button #4")
+	print("4 = getFile")
+	print("5 = putFile")
+	print("6 = cd")
+	print("7 = cp")
+	print("8 = mv")
+	print("9 = rm")
+	print("10 = mkdir")
+	print("11 = chmod")
 	print("99 = Exit! ")
 	return
 
-def switch_1():
+def pwd():
 	print("\npwd")
 	print api.pwd()
 	return
 
-def switch_2():
-	print("\nMORE STUFFF!!!!")
+def ls():
+	print("\nls")
+	print api.ls()
 	return
 
-def switch_3():
-	print("\nSteve's naughty stuff :)")
+def ls_attributes():
+	print("\nls_attributes")
+	print api.ls_attributes()
 	return
 
-def switch_4():
-	print("\nButton #4!")
+def getFile():
+	print("\ngetFile")
+	print api.getFile()
 	return
+
+def putFile():
+	print("\nputFile")
+	print api.putFile()
+	return
+
+def cd():
+	print("\ncd")
+	print api.cd()
+	return
+
+def cp():
+	print("\ncp")
+	print api.cp()
+	return
+
+def mv():
+	print("\nmv")
+	print api.mv()
+	return
+
+def rm():
+	print("\nrm")
+	print api.rm()
+	return
+
+def mkdir():
+	print("\nmkdir")
+	print api.mkdir()
+	return
+
+def chmod():
+	print("\nchmod")
+	print api.chmod()
+	return
+
+
 
 def exit():
 	print("\nExiting program.")
@@ -52,10 +100,17 @@ def exit():
 #The menu switch, add a -> number : function_name  to it if you'd like a button
 def menu(input):
 	switch = {
-		1 : switch_1,
-		2 : switch_2,
-		3 : switch_3,
-		4 : switch_4,
+		1 : pwd,
+		2 : ls,
+		3 : ls_attributes,
+		4 : getFile,
+		5 : putFile,
+		6 : cd,
+		7 : cp,
+		8 : mv,
+		9 : rm,
+		10: mkdir,
+		11: chmod,
 		99 : exit
 	}
 
