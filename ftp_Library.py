@@ -22,11 +22,32 @@ class ftpAPI:
         :param : string ftp hostname
         :return: ftp connection object
         '''
+        userName = raw_input("User Name: ")
+        pw = getpass.getpass("Password: ")
+        try:
+            self.connection = FTP(ftpHost,user=userName, passwd=pw)
+            del userName
+            del pw
+        except:
+            del userName
+            del pw
+            print("Login Failed. Check Host, User Name, and Password.")
+            exit()
+
+
+
+    def login_for_testing(self, ftpHost):
+        '''
+        :param : string ftp hostname
+        :return: ftp connection object
+        '''
         # userName = raw_input("User Name: ")
         # pw = getpass.getpass("Password(anything will work...): ")
-
-        self.connection = FTP(ftpHost,user="Anonymous", passwd="")
-
+        try:
+            self.connection = FTP(ftpHost,user="Anonymous", passwd="")
+        except:
+            print("Login Failed. Check User Name and Pass Word.")
+            exit()
         # del userName
         # del pw
 
