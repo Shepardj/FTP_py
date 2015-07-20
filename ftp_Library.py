@@ -95,7 +95,12 @@ class LocalFileSystem:
         return self.currentDirectory
 
     def ls(self):
-        print ("Not implemented yet")
+        
+        self.currentDirectory = os.getcwd()
+        dirs = os.listdir(self.currentDirectory)
+        formattedDirs = "\n".join(dirs)
+        return formattedDirs
+    
     def ls_attributes(self):
         print ("Not implemented yet")
     def cd(self, fileName):
