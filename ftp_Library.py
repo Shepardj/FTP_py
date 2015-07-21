@@ -68,8 +68,18 @@ class ftpAPI:
         print ("Not implemented yet")
     def putFile(self, fileToPut, serverDestinationPath):
         print ("Not implemented yet")
-    def cd(self, folderName):
-        print ("Not implemented yet")
+
+    def cd(self, folderName='/'):
+        if(folderName == "/"):
+            return self.connection.cwd('/')
+        if(folderName in self.connection.nlst()): 
+            try:
+                return self.connection.cwd(folderName)
+            except:
+                print "Unexpected error:", sys.exc_info()[0]   # I'm not sure how to raise this permissions expection
+        else:  
+            raise NotADirectoryException("Cannot cd into <" + folderName + ">")
+
     def cp(self, fileName):
         print ("Not implemented yet")
     def mv(self, fileName):
@@ -95,7 +105,6 @@ class LocalFileSystem:
         return self.currentDirectory
 
     def ls(self):
-        
         self.currentDirectory = os.getcwd()
         dirs = os.listdir(self.currentDirectory)
         formattedDirs = "\n".join(dirs)
@@ -115,3 +124,9 @@ class LocalFileSystem:
         print ("Not implemented yet")
     def chmod(self, fileName):
         print ("Not implemented yet")
+
+class NotADirectoryException(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)

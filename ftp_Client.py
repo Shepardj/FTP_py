@@ -90,9 +90,10 @@ print
 
 flag = True
 isLocal = False
+currentPath = api.pwd();   
 
 while flag:
-    command = raw_input("FTP > ")
+    command = raw_input("[" + currentPath + "] FTP > ")
     cmdParts = command.split()
     cmdLen = len(cmdParts)
 
@@ -111,6 +112,7 @@ while flag:
             print(api.pwd())
         elif(cmd == "cd"):
             print(api.cd())
+            currentPath = api.pwd()
         else:
             error(command)
 
@@ -119,7 +121,7 @@ while flag:
     if(cmdLen > 1):
         # The local flag is always the second 'word' in the command
         if(cmdParts[1] == "-l"):
-            print("Local command heard")  #debug string
+            print("(Local command heard)")  #debug string
             isLocal = True
         
         # ls -l, lsa -l, pwd -l, cd -l, cd <directory>
@@ -136,11 +138,13 @@ while flag:
                     print(local.ls_attributes())
                 elif(cmd == "cd"):
                     print(local.cd())
+                    currentPath = api.pwd()
                 else:
                     error(command)
             else:
                 if(cmd == "cd"):
                     print(api.cd(opt))
+                    currentPath = api.pwd()
                 elif(cmd == "get"):
                     print(api.getFile(opt))
                 elif(cmd == "put"):
