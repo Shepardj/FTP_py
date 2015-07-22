@@ -5,6 +5,7 @@ Linux style file commands for the server and local file system
 
 
 from ftplib import FTP
+import ftplib
 import sys
 import getpass
 import os
@@ -79,8 +80,8 @@ class ftpAPI:
         if(folderName in self.connection.nlst()): 
             try:
                 return self.connection.cwd(folderName)
-            except:
-                print "Unexpected error:", sys.exc_info()[0]   # I'm not sure how to raise this permissions expection
+            except ftplib.error_perm as e:
+                print "Unexpected error:" , e
         else:  
             raise NotADirectoryException("Cannot cd into <" + folderName + ">")
 
