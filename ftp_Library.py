@@ -87,7 +87,14 @@ class ftpAPI:
 
     def cp(self, fileName):
         print ("Not implemented yet")
-    def mv(self, fileName):
+    def mv(self, source, dest):
+        ##MUST wait for Putfile command so we can muck with our file
+        # if(source in self.connection.nlst()):
+        #     command = "RNFR " + source 
+        #     return self.connection.rename(command, dest)
+        # else:
+        #     raise FileNotFoundException("Cannot find <" + source + ">")
+
         print ("Not implemented yet")
     def rm(self, fileName):
         print ("Not implemented yet")
