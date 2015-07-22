@@ -35,8 +35,7 @@ class TestFTP(unittest.TestCase):
         self.assertEqual(self.ftp.pwd(), '/')
 
     def test_cd_dir_not_found(self):
-        with self.assertRaises(NotADirectoryException):
-            self.ftp.cd('foo')
+         self.assertEqual(self.ftp.cd('foo'), 'Cannot cd into <foo>')
 
     # This test fails because I don't know how to raise exceptions...
     def test_cd_permission_denied(self):

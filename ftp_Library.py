@@ -83,7 +83,7 @@ class ftpAPI:
             except ftplib.error_perm as e:
                 return "Unexpected error: " + str(e)
         else:  
-            raise NotADirectoryException("Cannot cd into <" + folderName + ">")
+            return "Cannot cd into <" + folderName + ">"
 
     def cp(self, fileName):
         print ("Not implemented yet")
