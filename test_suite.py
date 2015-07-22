@@ -40,8 +40,7 @@ class TestFTP(unittest.TestCase):
 
     # This test fails because I don't know how to raise exceptions...
     def test_cd_permission_denied(self):
-        with self.assertRaises(ftplib.error_reply):
-            self.ftp.cd('lost+found')
+        self.assertEqual(self.ftp.cd('lost+found'), 'Unexpected error: 550 Permission denied.')
 
     def test_get_existing_to_current(self):
         self.assertEqual(self.ftp.getFile('README.txt'), '226 Transfer complete.')

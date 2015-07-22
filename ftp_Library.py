@@ -81,7 +81,7 @@ class ftpAPI:
             try:
                 return self.connection.cwd(folderName)
             except ftplib.error_perm as e:
-                print "Unexpected error:" , e
+                return "Unexpected error: " + str(e)
         else:  
             raise NotADirectoryException("Cannot cd into <" + folderName + ">")
 
