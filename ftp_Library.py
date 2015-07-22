@@ -63,9 +63,13 @@ class ftpAPI:
     def ls_attributes(self):
         return self.connection.dir()
 
+    def getFile(self, fileToGet, localDestinationPath=os.getcwd()):
+        if(fileToGet in self.connection.nlst()):
+            command = "RETR " + fileToGet
+            return self.connection.retrlines(command,  open(fileToGet, 'wb').write)
+        else:
+            raise FileNotFoundException("Cannot find <" + fileToGet + ">")
 
-    def getFile(self, fileToGet, localDestinationPath):
-        print ("Not implemented yet")
     def putFile(self, fileToPut, serverDestinationPath):
         print ("Not implemented yet")
 
@@ -124,6 +128,13 @@ class LocalFileSystem:
         print ("Not implemented yet")
     def chmod(self, fileName):
         print ("Not implemented yet")
+
+
+class FileNotFoundException(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
 
 class NotADirectoryException(Exception):
     def __init__(self, value):
