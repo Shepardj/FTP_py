@@ -10,21 +10,16 @@ local =LocalFileSystem()
 
 #Welcome to the program prompt
 def welcome_for_testing():
-    print("\nWelcome to the program Steve Fish Truck\n")  #someone make this better :)
+    print("\nRunning Steve Fish Truck's FTP Client\n")  #someone make this better :)
     print("You will be automatically logged in to an anonymous FTP client...")
 
     api.login_for_testing('ftp.swfwmd.state.fl.us')
     return
 
 def welcome():
-    print("\nWelcome to the program Steve Fish Truck\n")  #someone make this better :)
+    print("\nRunning Steve Fish Truck's FTP Client\n")  #someone make this better :)
     ftpHost = raw_input("What is ftp host address: ")
     api.login('ftp.swfwmd.state.fl.us')
-    return
-
-
-def exit():
-    print("\nExiting program.")
     return
 
 
