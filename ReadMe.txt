@@ -1,5 +1,8 @@
 FTP project for Agile 2015
 
+FTP Server: ftp.edubnetwork.com
+Username: Stevefisheries
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Group:
 
@@ -13,5 +16,3 @@ Jonathan Shepardson
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Python Version: 2.7.6
-
-

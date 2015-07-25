@@ -5,6 +5,7 @@ Linux style file commands for the server and local file system
 
 
 from ftplib import FTP
+import ftplib
 import sys
 import getpass
 import os
@@ -44,10 +45,10 @@ class ftpAPI:
         :param : string ftp hostname
         :return: ftp connection object
         '''
-        # userName = raw_input("User Name: ")
-        # pw = getpass.getpass("Password(anything will work...): ")
+
+        #auto login for testing ease
         try:
-            self.connection = FTP(ftpHost,user="Anonymous", passwd="")
+            self.connection = FTP(ftpHost,user="stevefisheries", passwd="1mactruck2") #for connecting to new server
         except:
             print("Login Failed. Check User Name and Pass Word.")
             exit()
@@ -63,17 +64,36 @@ class ftpAPI:
     def ls_attributes(self):
         return self.connection.dir()
 
+    def getFile(self, fileToGet, localDestinationPath=os.getcwd()):
+        if(fileToGet in self.connection.nlst()):
+            command = "RETR " + fileToGet
+            return self.connection.retrlines(command,  open(fileToGet, 'wb').write)
+        else:
+            raise FileNotFoundException("Cannot find <" + fileToGet + ">")
 
-    def getFile(self, fileToGet, localDestinationPath):
-        print ("Not implemented yet")
     def putFile(self, fileToPut, serverDestinationPath):
         print ("Not implemented yet")
-    def cd(self, folderName):
-        print ("Not implemented yet")
+
+    def cd(self, folderName='/'):
+        if(folderName == "/"):
+            return self.connection.cwd('/')
+        if(folderName in self.connection.nlst()): 
+            try:
+                return self.connection.cwd(folderName)
+            except ftplib.error_perm as e:
+                return "Unexpected error: " + str(e)
+        else:  
+            return "Cannot cd into <" + folderName + ">"
+
     def cp(self, fileName):
         print ("Not implemented yet")
-    def mv(self, fileName):
+    def mv(self, source, dest):
+        if(source in self.connection.nlst()):
+            return self.connection.rename(source, dest)
+        else:
+            raise FileNotFoundException("Cannot find <" + source + ">")
         print ("Not implemented yet")
+
     def rm(self, fileName):
         print ("Not implemented yet")
     def mkdir(self, fileName):
@@ -95,7 +115,11 @@ class LocalFileSystem:
         return self.currentDirectory
 
     def ls(self):
-        print ("Not implemented yet")
+        self.currentDirectory = os.getcwd()
+        dirs = os.listdir(self.currentDirectory)
+        formattedDirs = "\n".join(dirs)
+        return formattedDirs
+    
     def ls_attributes(self):
         print ("Not implemented yet")
     def cd(self, fileName):
@@ -110,3 +134,16 @@ class LocalFileSystem:
         print ("Not implemented yet")
     def chmod(self, fileName):
         print ("Not implemented yet")
+
+
+class FileNotFoundException(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
+
+class NotADirectoryException(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)

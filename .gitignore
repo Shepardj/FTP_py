@@ -1,2 +1,10 @@
 *.pyc
 __pycache__
+./test_folder
+./test_folder/*
+
+FOO2.txt
+
+test_folder/dummy_folder/test.txt
+
+test_folder/dummy.txt
