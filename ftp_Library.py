@@ -45,10 +45,10 @@ class ftpAPI:
         :param : string ftp hostname
         :return: ftp connection object
         '''
-        # userName = raw_input("User Name: ")
-        # pw = getpass.getpass("Password(anything will work...): ")
+
+        #auto login for testing ease
         try:
-            self.connection = FTP(ftpHost,user="Anonymous", passwd="")
+            self.connection = FTP(ftpHost,user="stevefisheries", passwd="1mactruck2") #for connecting to new server
         except:
             print("Login Failed. Check User Name and Pass Word.")
             exit()
@@ -88,14 +88,12 @@ class ftpAPI:
     def cp(self, fileName):
         print ("Not implemented yet")
     def mv(self, source, dest):
-        ##MUST wait for Putfile command so we can muck with our file
-        # if(source in self.connection.nlst()):
-        #     command = "RNFR " + source 
-        #     return self.connection.rename(command, dest)
-        # else:
-        #     raise FileNotFoundException("Cannot find <" + source + ">")
-
+        if(source in self.connection.nlst()):
+            return self.connection.rename(source, dest)
+        else:
+            raise FileNotFoundException("Cannot find <" + source + ">")
         print ("Not implemented yet")
+
     def rm(self, fileName):
         print ("Not implemented yet")
     def mkdir(self, fileName):
