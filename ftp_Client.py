@@ -147,6 +147,8 @@ while flag:
                     print(api.putFile(opt))
                 elif(cmd == "mkdir"):
                     print(api.mkdir(opt))
+                elif(cmd == "rmdir"):
+                    print(api.rmdir(opt))
                 elif(cmd == "rm"):
                     print(api.rm(opt))
                 else:

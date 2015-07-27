@@ -59,7 +59,9 @@ class ftpAPI:
         return self.connection.pwd()
 
     def ls(self):
-        return self.connection.nlst()
+        formattedDirs = "\n".join(self.connection.nlst())
+        return formattedDirs
+        #return self.connection.nlst()
 
     def ls_attributes(self):
         return self.connection.dir()
@@ -96,8 +98,27 @@ class ftpAPI:
 
     def rm(self, fileName):
         print ("Not implemented yet")
-    def mkdir(self, fileName):
-        print ("Not implemented yet")
+    def mkdir(self, directoryName):
+        if(directoryName in self.connection.nlst()):
+          print("failed to create directory! " + directoryName + " already exists!")
+          return
+        else:
+          self.connection.mkd(directoryName);
+          print("created directory: " + directoryName)
+
+    def rmdir(self, directoryName):
+      if(directoryName in self.connection.nlst()):
+          try:
+            self.connection.rmd(directoryName)
+            print("removed directory: " + directoryName)  
+            return
+          except ftplib.error_perm, resp:  
+            print("Cannot remove! " + directoryName + " is not a directory!")
+            return
+      else:  
+        print("failed to remove directory! " + directoryName + " does not exist!")
+        return
+
     def chmod(self, fileName):
         print ("Not implemented yet")
 
