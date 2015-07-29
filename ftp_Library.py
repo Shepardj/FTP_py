@@ -115,15 +115,25 @@ class LocalFileSystem:
         return self.currentDirectory
 
     def ls(self):
-        self.currentDirectory = os.getcwd()
         dirs = os.listdir(self.currentDirectory)
         formattedDirs = "\n".join(dirs)
         return formattedDirs
     
     def ls_attributes(self):
         print ("Not implemented yet")
-    def cd(self, fileName):
-        print ("Not implemented yet")
+    def cd(self, path):
+        if path ==  "." :
+            return self.currentDirectory
+        elif path ==  ".." :
+            sliceIdx = self.currentDirectory.rindex('/')
+            self.currentDirectory = self.currentDirectory[:sliceIdx]
+            return self.currentDirectory
+        elif os.path.isdir(self.currentDirectory + "/" + path):
+            self.currentDirectory = os.getcwd() + "/" + path
+            return self.currentDirectory
+        else:
+            return "Not a directory"
+
     def cp(self, fileName):
         print ("Not implemented yet")
     def mv(self, fileName):
