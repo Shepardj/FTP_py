@@ -89,115 +89,119 @@ isLocal = False
 currentPath = api.pwd();   
 
 while flag:
-    command = raw_input("[" + currentPath + "] FTP > ")
-    cmdParts = command.split()
-    cmdLen = len(cmdParts)
+    try:
+        command = raw_input("[" + currentPath + "] FTP > ")
+        cmdParts = command.split()
+        cmdLen = len(cmdParts)
 
-    # help, exit, ls, lsa, pwd, cd
-    if(cmdLen == 1): 
-        cmd = cmdParts[0]    
-        if(cmd == "help"):
-            help()
-        elif(cmd == "exit"):
-            exit()
-        elif(cmd == "ls"):
-            print(api.ls())
-        elif(cmd == "lsa"):
-            print(api.ls_attributes())
-        elif(cmd == "pwd"):
-            print(api.pwd())
-        elif(cmd == "cd"):
-            print(api.cd())
-            currentPath = api.pwd()
-        else:
-            error(command)
-
-
-    # Checks if it is a local command first
-    if(cmdLen > 1):
-        # The local flag is always the second 'word' in the command
-        if(cmdParts[1] == "-l"):
-            print("(Local command heard)")  #debug string
-            isLocal = True
-        
-        # ls -l, lsa -l, pwd -l, cd -l, cd <directory>
-        # get <file>, put <file>, mkdir <directory>, rm <file>
-        if(cmdLen == 2):
+        # help, exit, ls, lsa, pwd, cd
+        if(cmdLen == 1):
             cmd = cmdParts[0]
-            opt = cmdParts[1]
-            if(isLocal):
-                if(cmd == "pwd"):
-                    print(local.pwd())
-                elif(cmd == "ls"):
-                    print(local.ls())
-                elif(cmd == "lsa"):
-                    print(local.ls_attributes())
-                elif(cmd == "cd"):
-                    print(local.cd())
-                    currentPath = api.pwd()
-                else:
-                    error(command)
-            else:
-                if(cmd == "cd"):
-                    print(api.cd(opt))
-                    currentPath = api.pwd()
-                elif(cmd == "get"):
-                    print(api.getFile(opt))
-                elif(cmd == "put"):
-                    print(api.putFile(opt))
-                elif(cmd == "mkdir"):
-                    print(api.mkdir(opt))
-                elif(cmd == "rm"):
-                    print(api.rm(opt))
-                else:
-                    error(command)
-
-        # cd -l <directory>, rm -l <file>, mkdir -l <directory>
-        # mv <source> <dest>, cp <source> <dest>, chmod <file> <permissions>
-        elif(cmdLen == 3):
-            cmd = cmdParts[0]
-            opt1 = cmdParts[1]
-            opt2 = cmdParts[2]
-
-            if(isLocal):
-                if(cmd == "cd"):
-                    print(local.cd(opt2))
-                elif(cmd == "rm"):
-                    print(local.rm(opt2))
-                elif(cmd == "mkdir"):
-                    print(local.mkdir(opt2))
-                else:
-                    error(command)
-            else:
-                if(cmd == "mv"):
-                    print(api.mv(opt1, opt2))
-                elif(cmd == "cp"):
-                    print(api.cp(opt1, opt2))
-                elif(cmd == "chmod"):
-                    print(api.chmod(opt1, opt2))
-                else:
-                    error(command)
-
-        # chmod -l <file> <permissions>, cp -l <source> <dest>, mv -l <source> <dest>
-        elif(cmdLen == 4):
-            cmd = cmdParts[0]
-            opt1 = cmdParts[1]
-            opt2 = cmdParts[2]
-            opt3 = cmdParts[3]
-
-            if(isLocal):
-                if(cmd == "chmod"):
-                    print(local.chmod(opt2, opt3))
-                elif(cmd == "cp"):
-                    print(local.chmod(opt2, opt3))
-                elif(cmd == "mv"):
-                    print(local.chmod(opt2, opt3))
-                else: 
-                    error(command)
+            if(cmd == "help"):
+                help()
+            elif(cmd == "exit"):
+                exit()
+            elif(cmd == "ls"):
+                print(api.ls())
+            elif(cmd == "lsa"):
+                print(api.ls_attributes())
+            elif(cmd == "pwd"):
+                print(api.pwd())
+            elif(cmd == "cd"):
+                print(api.cd())
+                currentPath = api.pwd()
             else:
                 error(command)
 
-        # nonsense command!
-        else:
-            error(command)
 
+        # Checks if it is a local command first
+        if(cmdLen > 1):
+            # The local flag is always the second 'word' in the command
+            if(cmdParts[1] == "-l"):
+                print("(Local command heard)")  #debug string
+                isLocal = True
+
+            # ls -l, lsa -l, pwd -l, cd -l, cd <directory>
+            # get <file>, put <file>, mkdir <directory>, rm <file>
+            if(cmdLen == 2):
+                cmd = cmdParts[0]
+                opt = cmdParts[1]
+                if(isLocal):
+                    if(cmd == "pwd"):
+                        print(local.pwd())
+                    elif(cmd == "ls"):
+                        print(local.ls())
+                    elif(cmd == "lsa"):
+                        print(local.ls_attributes())
+                    elif(cmd == "cd"):
+                        print(local.cd())
+                        currentPath = api.pwd()
+                    else:
+                        error(command)
+                else:
+                    if(cmd == "cd"):
+                        print(api.cd(opt))
+                        currentPath = api.pwd()
+                    elif(cmd == "get"):
+                        print(api.getFile(opt))
+                    elif(cmd == "put"):
+                        print(api.putFile(opt))
+                    elif(cmd == "mkdir"):
+                        print(api.mkdir(opt))
+                    elif(cmd == "rm"):
+                        print(api.rm(opt))
+                    else:
+                        error(command)
+
+            # cd -l <directory>, rm -l <file>, mkdir -l <directory>
+            # mv <source> <dest>, cp <source> <dest>, chmod <file> <permissions>
+            elif(cmdLen == 3):
+                cmd = cmdParts[0]
+                opt1 = cmdParts[1]
+                opt2 = cmdParts[2]
+
+                if(isLocal):
+                    if(cmd == "cd"):
+                        print(local.cd(opt2))
+                    elif(cmd == "rm"):
+                        print(local.rm(opt2))
+                    elif(cmd == "mkdir"):
+                        print(local.mkdir(opt2))
+                    else:
+                        error(command)
+                else:
+                    if(cmd == "mv"):
+                        print(api.mv(opt1, opt2))
+                    elif(cmd == "cp"):
+                        print(api.cp(opt1, opt2))
+                    elif(cmd == "chmod"):
+                        print(api.chmod(opt1, opt2))
+                    else:
+                        error(command)
+
+            # chmod -l <file> <permissions>, cp -l <source> <dest>, mv -l <source> <dest>
+            elif(cmdLen == 4):
+                cmd = cmdParts[0]
+                opt1 = cmdParts[1]
+                opt2 = cmdParts[2]
+                opt3 = cmdParts[3]
+
+                if(isLocal):
+                    if(cmd == "chmod"):
+                        print(local.chmod(opt2, opt3))
+                    elif(cmd == "cp"):
+                        print(local.chmod(opt2, opt3))
+                    elif(cmd == "mv"):
+                        print(local.chmod(opt2, opt3))
+                    else:
+                        error(command)
+                else:
+                    error(command)
+
+            # nonsense command!
+            else:
+                error(command)
+
+    except Exception, e:
+        print e
+        pass
