@@ -10,6 +10,7 @@ class TestFTP(unittest.TestCase):
 
     def setUp(self):
         self.ftp = ftpAPI()
+        self.local = LocalFileSystem()
         # self.ftp.login_for_testing('ftp.swfwmd.state.fl.us')
         self.ftp.login_for_testing('ftp.edubnetwork.com')
 
@@ -68,9 +69,13 @@ class TestFTP(unittest.TestCase):
 
     def test_mv_not_a_file(self):
         #tried to move a dir
-        self.assertEqual(self.ftp.mv('pub', 'pub2'), 'FileNotFoundException: Cannot find <pub>')
+        self.assertEqual(self.ftp.mv('pub', 'pub2'), 'Cannot find <pub>')
 
 
+#--------------local file system tests
+    def test_local_cd(self):
+        oldDir = self.local.currentDirectory
+        self.assertEqual(self.local.cd("foo"), oldDir + "/foo")
 
 if __name__ == '__main__':
     unittest.main()

@@ -91,8 +91,7 @@ class ftpAPI:
         if(source in self.connection.nlst()):
             return self.connection.rename(source, dest)
         else:
-            raise FileNotFoundException("Cannot find <" + source + ">")
-        print ("Not implemented yet")
+            return "Cannot find <" + source + ">"
 
     def rm(self, fileName):
         print ("Not implemented yet")
