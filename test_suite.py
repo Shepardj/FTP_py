@@ -70,6 +70,8 @@ class TestFTP(unittest.TestCase):
         #tried to move a dir
         self.assertEqual(self.ftp.mv('pub', 'pub2'), 'FileNotFoundException: Cannot find <pub>')
 
+
+
 if __name__ == '__main__':
     unittest.main()
 
