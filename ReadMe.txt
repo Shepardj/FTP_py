@@ -15,4 +15,8 @@ Jonathan Shepardson
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+<<<<<<< Updated upstream
 Python Version: 2.7.6
+=======
+Python Version: 2.7.6
+>>>>>>> Stashed changes
