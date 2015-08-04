@@ -89,7 +89,7 @@ class ftpAPI:
 
     def cp(self, source, dest):
         if(source in self.connection.nlst()):
-            return self.connection.sendcmd("cp source dest")
+            return self.connection.sendcmd("cp " + source + " " + dest)
         else:
             raise FileNotFoundException("Cannot find <" + source + ">")
 
