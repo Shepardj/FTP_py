@@ -154,7 +154,7 @@ class LocalFileSystem:
         return formattedDirs
     
     def ls_attributes(self):
-        print ("Not implemented yet")
+        print ("Not implemented yet, not sure if python OS has this ability")
     def cd(self, fileName):
         print ("Not implemented yet")
     def cp(self, fileName):
