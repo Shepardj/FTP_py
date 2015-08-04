@@ -87,14 +87,17 @@ class ftpAPI:
         else:  
             return "Cannot cd into <" + folderName + ">"
 
-    def cp(self, fileName):
-        print ("Not implemented yet")
+    def cp(self, source, dest):
+        if(source in self.connection.nlst()):
+            return self.connection.sendcmd("cp source dest")
+        else:
+            raise FileNotFoundException("Cannot find <" + source + ">")
+
     def mv(self, source, dest):
         if(source in self.connection.nlst()):
             return self.connection.rename(source, dest)
         else:
             raise FileNotFoundException("Cannot find <" + source + ">")
-        print ("Not implemented yet")
 
     def rm(self, fileName):
         if(fileName in self.connection.nlst()):
