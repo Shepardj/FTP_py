@@ -9,6 +9,7 @@ import ftplib
 import sys
 import getpass
 import os
+import shutil
 
 
 class ftpAPI:
@@ -168,7 +169,17 @@ class LocalFileSystem:
             raise FileNotFoundException("Cannot find <" + source + ">")
 
     def rm(self, fileName):
-        print ("Not implemented yet")
+        if(os.path.isfile(fileName)):
+            os.remove(fileName)
+            string = "File " + fileName + "removed"
+            return string
+        elif(os.path.isdir(fileName)):
+            shutil.rmtree(fileName)
+            string = "File " + fileName + " removed"
+            return string
+        else:
+            raise FileNotFoundException("Cannot find <" + fileName + ">")
+
     def mkdir(self, fileName):
         print ("Not implemented yet")
     def chmod(self, fileName):
