@@ -158,8 +158,15 @@ class LocalFileSystem:
         print ("Not implemented yet")
     def cp(self, fileName):
         print ("Not implemented yet")
-    def mv(self, fileName):
-        print ("Not implemented yet")
+
+    def mv(self, source, dest):
+        if(os.path.isfile(source)):
+            os.rename(source, dest)
+            string = "File " + source + " renamed -> " + dest
+            return string
+        else:
+            raise FileNotFoundException("Cannot find <" + source + ">")
+
     def rm(self, fileName):
         print ("Not implemented yet")
     def mkdir(self, fileName):

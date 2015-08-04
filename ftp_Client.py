@@ -193,7 +193,7 @@ while flag:
                 elif(cmd == "cp"):
                     print(local.chmod(opt2, opt3))
                 elif(cmd == "mv"):
-                    print(local.chmod(opt2, opt3))
+                    print(local.mv(opt2, opt3))
                 else: 
                     error(command)
             else:
