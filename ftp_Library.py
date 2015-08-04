@@ -97,7 +97,18 @@ class ftpAPI:
         print ("Not implemented yet")
 
     def rm(self, fileName):
-        print ("Not implemented yet")
+        if(fileName in self.connection.nlst()):
+            try:
+                self.connection.delete(fileName)
+                print("removed file: " + fileName)
+                return
+            except ftplib.error_perm, resp:
+                print("Cannot remove! " + fileName + " is not a file!")
+                return
+        else:
+            print("failed to remove file! " + fileName + " does not exist!")
+            return
+
     def mkdir(self, directoryName):
         if(directoryName in self.connection.nlst()):
           print("failed to create directory! " + directoryName + " already exists!")
