@@ -213,7 +213,22 @@ while flag:
                 else:
                     error(command)
 
-            # nonsense command!
+        # chmod -l <file> <permissions>, cp -l <source> <dest>, mv -l <source> <dest>
+        elif(cmdLen == 4):
+            cmd = cmdParts[0]
+            opt1 = cmdParts[1]
+            opt2 = cmdParts[2]
+            opt3 = cmdParts[3]
+
+            if(isLocal):
+                if(cmd == "chmod"):
+                    print(local.chmod(opt2, opt3))
+                elif(cmd == "cp"):
+                    print(local.chmod(opt2, opt3))
+                elif(cmd == "mv"):
+                    print(local.mv(opt2, opt3))
+                else: 
+                    error(command)
             else:
                 error(command)
 
