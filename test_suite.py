@@ -4,25 +4,31 @@ from ftplib import FTP   # For exceptions
 from ftp_Library import *
 
 import unittest
+import time
 
 class TestFTP(unittest.TestCase):
 
 
-    def setUp(self):
-        self.ftp = ftpAPI()
-        self.local = LocalFileSystem()
+    @classmethod
+    def setUpClass(cls):
+        cls.ftp = ftpAPI()
+        cls.local = LocalFileSystem()
         # self.ftp.login_for_testing('ftp.swfwmd.state.fl.us')
-        self.ftp.login_for_testing('ftp.edubnetwork.com')
+        time.sleep(1)
+        cls.ftp.login_for_testing('ftp.edubnetwork.com')
 
     def test_pwd(self):
+        self.ftp.cd()
         self.assertEqual(self.ftp.pwd(), '/')
 
 #BROKE with server change
     def test_ls(self):
-        self.assertEqual(self.ftp.ls(), 'Maildir\nlogs\ntest_folder\ndummy3.txt')
+        self.ftp.cd()
+        self.assertEqual(self.ftp.ls(), 'Maildir\nlogs\ntest_folder')
 
     def test_ls_attributes(self):  # does this test do anything?
         self.assertEqual( self.ftp.ls_attributes() , None )
+
 
     def test_cd_one_down(self):
         self.ftp.cd('test_folder')
