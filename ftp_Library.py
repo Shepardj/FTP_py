@@ -79,7 +79,6 @@ class ftpAPI:
         dirs = os.listdir(self.currentDirectory)
         if(fileToPut in dirs):
             command = "STOR " + fileToPut
-            #return self.connection.storlines(command, open(fileToPut, 'r'), open(fileToPut, 'wb').write)
             return self.connection.storlines(command, open(fileToPut, 'r'))
         else:
             raise FileNotFoundException("Cannot find <" + fileToPut + ">")
