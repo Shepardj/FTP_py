@@ -19,7 +19,7 @@ class TestFTP(unittest.TestCase):
 
 #BROKE with server change
     def test_ls(self):
-        self.assertEqual(self.ftp.ls(), ['Maildir', 'logs', 'test_folder'])
+        self.assertEqual(self.ftp.ls(), 'Maildir\nlogs\ntest_folder')
 
     def test_ls_attributes(self):  # does this test do anything?
         self.assertEqual( self.ftp.ls_attributes() , None )
