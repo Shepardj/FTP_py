@@ -9,6 +9,7 @@ import ftplib
 import sys
 import getpass
 import os
+import shutil
 
 
 class ftpAPI:
@@ -166,15 +167,32 @@ class LocalFileSystem:
         return formattedDirs
     
     def ls_attributes(self):
-        print ("Not implemented yet")
+        print ("Not implemented yet, not sure if python OS has this ability")
     def cd(self, fileName):
         print ("Not implemented yet")
     def cp(self, fileName):
         print ("Not implemented yet")
-    def mv(self, fileName):
-        print ("Not implemented yet")
+
+    def mv(self, source, dest):
+        if(os.path.isfile(source)):
+            os.rename(source, dest)
+            string = "File " + source + " renamed -> " + dest
+            return string
+        else:
+            raise FileNotFoundException("Cannot find <" + source + ">")
+
     def rm(self, fileName):
-        print ("Not implemented yet")
+        if(os.path.isfile(fileName)):
+            os.remove(fileName)
+            string = "File " + fileName + "removed"
+            return string
+        elif(os.path.isdir(fileName)):
+            shutil.rmtree(fileName)
+            string = "File " + fileName + " removed"
+            return string
+        else:
+            raise FileNotFoundException("Cannot find <" + fileName + ">")
+
     def mkdir(self, fileName):
         print ("Not implemented yet")
     def chmod(self, fileName):
