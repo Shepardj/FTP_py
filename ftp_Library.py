@@ -72,7 +72,7 @@ class ftpAPI:
             command = "RETR " + fileToGet
             return self.connection.retrlines(command,  open(fileToGet, 'wb').write)
         else:
-            raise FileNotFoundException("Cannot find <" + fileToGet + ">")
+            return "Cannot find <" + fileToGet + ">"
 
     def putFile(self, fileToPut, serverDestinationPath):
         print ("Not implemented yet")

@@ -46,9 +46,9 @@ class TestFTP(unittest.TestCase):
     # def test_cd_permission_denied(self):
     #     self.assertEqual(self.ftp.cd('lost+found'), 'Unexpected error: 550 Permission denied.')
 
-# BROKE with server change
-    # def test_get_existing_to_current(self):
-    #     self.assertEqual(self.ftp.getFile('README.txt'), '226 Transfer complete.')
+
+    def test_get_existing_to_current(self):
+        self.assertEqual(self.ftp.getFile('The_file_that_never_existed.txt'), 'Cannot find <The_file_that_never_existed.txt>')
 
 # BROKE with server change
     # def test_get_not_found_file_to_current(self):
