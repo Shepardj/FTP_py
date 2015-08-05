@@ -74,7 +74,11 @@ class ftpAPI:
             raise FileNotFoundException("Cannot find <" + fileToGet + ">")
 
     def putFile(self, fileToPut, serverDestinationPath):
-        print ("Not implemented yet")
+        if(fileToPut in self.connection.nlst()):
+            command = "STOR" + fileToPut
+            return self.connection.storlines(command, open(fileToPut, 'r'))
+        else:
+            raise FileNotFoundException("Cannot find <" + fileToPut + ">")
 
     def cd(self, folderName='/'):
         if(folderName == "/"):
@@ -87,9 +91,13 @@ class ftpAPI:
         else:  
             return "Cannot cd into <" + folderName + ">"
 
-    def cp(self, source, dest):
+    def cp(self, source, dest, tempLocalStorage=os.getcwd()):
         if(source in self.connection.nlst()):
-            return self.connection.sendcmd("cp " + source + " " + dest)
+            #getFile(self, source, tempLocalStorage)
+            command = "RETR " + source
+            tempFile = self.connection.retrlines(command, open(source, 'wb').write)
+            command = "STOR " + dest
+            return self.connection.storlines(command, open(tempFile, 'r'))
         else:
             raise FileNotFoundException("Cannot find <" + source + ">")
 
