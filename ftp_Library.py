@@ -90,6 +90,7 @@ class ftpAPI:
 
     def cp(self, fileName):
         print ("Not implemented yet")
+
     def mv(self, source, dest):
         if(source in self.connection.nlst()):
             return self.connection.rename(source, dest)
@@ -100,35 +101,35 @@ class ftpAPI:
         if(fileName in self.connection.nlst()):
             try:
                 self.connection.delete(fileName)
-                print("removed file: " + fileName)
-                return
+                return ("removed file: " + fileName)
+
             except ftplib.error_perm, resp:
-                print("Cannot remove! " + fileName + " is not a file!")
-                return
+                return ("Cannot remove! " + fileName + " is not a file!")
+
         else:
-            print("failed to remove file! " + fileName + " does not exist!")
-            return
+            return ("failed to remove file! " + fileName + " does not exist!")
+
 
     def mkdir(self, directoryName):
         if(directoryName in self.connection.nlst()):
-          print("failed to create directory! " + directoryName + " already exists!")
-          return
+          return ("failed to create directory! " + directoryName + " already exists!")
+
         else:
           self.connection.mkd(directoryName);
-          print("created directory: " + directoryName)
+          return ("created directory: " + directoryName)
 
     def rmdir(self, directoryName):
       if(directoryName in self.connection.nlst()):
           try:
             self.connection.rmd(directoryName)
-            print("removed directory: " + directoryName)  
-            return
+            return("removed directory: " + directoryName)
+
           except ftplib.error_perm, resp:  
-            print("Cannot remove! " + directoryName + " is not a directory!")
-            return
+            return("Cannot remove! " + directoryName + " is not a directory!")
+
       else:  
-        print("failed to remove directory! " + directoryName + " does not exist!")
-        return
+        return("failed to remove directory! " + directoryName + " does not exist!")
+
 
     def chmod(self, fileName):
         print ("Not implemented yet")
