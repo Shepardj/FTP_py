@@ -112,22 +112,7 @@ while flag:
                 currentPath = api.pwd()
             else:
                 error(command)
-        else:
-            if(cmd == "cd"):
-                print(api.cd(opt))
-                currentPath = api.pwd()
-            elif(cmd == "get"):
-                print(api.getFile(opt))
-            elif(cmd == "put"):
-                print(api.putFile(opt))
-            elif(cmd == "mkdir"):
-                print(api.mkdir(opt))
-            elif(cmd == "rmdir"):
-                print(api.rmdir(opt))
-            elif(cmd == "rm"):
-                print(api.rm(opt))
-            else:
-                error(command)
+      
 
         # Checks if it is a local command first
         if(cmdLen > 1):
