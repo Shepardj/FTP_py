@@ -112,7 +112,6 @@ while flag:
                 currentPath = api.pwd()
             else:
                 error(command)
-      
 
         # Checks if it is a local command first
         if(cmdLen > 1):
